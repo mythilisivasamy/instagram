@@ -1,0 +1,35 @@
+<div class="container pt-5" style="max-width:350px">
+    <h4 class="text-center fw-bold">Login</h4>
+    <form [formGroup]="loginForm" novalidate #loginform="ngForm">
+
+        <div class="form-group">
+            <label for="userName">UserName</label>
+            <input type="text" class="form-control" id="userName" placeholder="Enter userName"
+                formControlName="userName" required />
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" placeholder="Enter password"
+                formControlName="password" required />
+        </div>
+        <div class="mt-2 d-grid">
+            <button type="submit" class="custom-btn custom-btn-blue" (click)="login()">
+                Login
+            </button>
+        </div>
+        <p><a>Forgot Password?</a></p>
+        <div class="my-3">
+            <hr class="text-muted" />
+            <h6 class="text-muted text-center">OR</h6>
+            <hr class="text-muted" />
+        </div>
+        <div class="my-3 d-grid">
+            <button class="custom-btn custom-btn-white">
+                <span class="text-muted">Don't have an account? </span>
+                <span class="ms-1 text-info fw-bold">
+                    <a routerLink='/signup'>Sign Up</a>
+                </span>
+            </button>
+        </div>
+    </form>
+</div>

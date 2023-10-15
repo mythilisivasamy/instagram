@@ -1,0 +1,105 @@
+<div class="container pt-5" style="max-width:400px">
+    <h4 class="text-center fw-bold">Signup</h4>
+    <form [formGroup]="signupForm" novalidate #signupform="ngForm" #sign>
+        <div [hidden]="signupform.submitted"> 
+        <div class="form-group">
+            <label for="userName">UserName</label>
+            <input type="text" class="form-control" id="userName" placeholder="Enter userName"
+                formControlName="userName" required />
+        </div>
+        
+        <!-- User Name validators -->
+        <div *ngIf="userName!.invalid && (userName!.dirty || userName!.touched)"
+            class="alert alert-danger text-danger">
+            <div *ngIf="userName!.errors?.['required']">
+                User Name is required.
+            </div>
+            <div *ngIf="userName!.errors?.['isString']">
+                Alphabets only allowed
+            </div>
+        </div>
+        <!-------------------------------->
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" placeholder="Enter password"
+                formControlName="password" required />
+        </div>
+        <div class="form-group">
+            <label for="cnfrmPassword">Confirm Password</label>
+            <input 
+                type="password" 
+                class="form-control"
+                id="cnfrmPassword" 
+                name="cnfrmPassword"
+                placeholder="Confirm password"
+                formControlName="cnfrmPassword"
+                required 
+                (change)="checkPassword('cnfrmPassword')"
+                />
+        </div>
+        <div class="form-group">
+            <label for="fullName">FullName</label>
+            <input type="text" class="form-control" id="fullName" placeholder="Enter fullName"
+                formControlName="fullName" required />
+        </div>
+         <!-- FullName validators -->
+         <div *ngIf="fullName!.invalid && (fullName!.dirty || fullName!.touched)"
+         class="alert alert-danger text-danger">
+         <div *ngIf="fullName!.errors?.['required']">
+              Name is required.
+         </div>
+         <div *ngIf="fullName!.errors?.['isString']">
+             Alphabets only allowed
+         </div>
+     </div>
+     <!-------------------------------->
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="text" class="form-control" id="email" placeholder="user@example.com" formControlName="email"
+                required />
+        </div>
+         <!-- Email validators -->
+         <div *ngIf="email!.invalid && (email!.dirty || email!.touched)"
+         class="alert alert-danger text-danger">
+         <div *ngIf="email!.errors?.['required']">
+             email  is required.
+         </div>
+         <div *ngIf="email!.errors?.['isEmail']">
+             Invalid Email
+         </div>
+     </div>
+     <!-------------------------------->
+        <div class="form-group">
+            <label for="phoneNumber">Phone Number</label>
+            <input type="text" class="form-control" id="phoneNumber" placeholder="Enter Phone Number"
+                formControlName="phoneNumber" required />
+        </div>
+        <!-- Phone Number validators -->
+        <div *ngIf="phoneNumber!.invalid && (phoneNumber!.dirty || phoneNumber!.touched)"
+        class="alert alert-danger text-danger">
+        <div *ngIf="phoneNumber!.errors?.['required']">
+            phoneNumber is required.
+        </div>
+        <div *ngIf="phoneNumber!.errors?.['isNumber']">
+            Invalid phoneNumber
+        </div>
+    </div>
+    <!-------------------------------->
+        <div class="mt-2 d-grid">
+            <button 
+                type="submit" 
+                class="custom-btn custom-btn-blue"
+                [disabled]="!signupForm.valid"
+                (click)="addUser()"
+                >
+                Signup
+            </button>
+        </div>
+    </div>
+    </form>
+
+    <div class="submitted-message" *ngIf="signupform.submitted && !errorMessage">
+        <p>Signup Successfully</p>
+        <a routerLink="/login">Login</a>
+      </div>
+</div>
